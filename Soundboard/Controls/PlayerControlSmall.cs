@@ -121,7 +121,7 @@ namespace Soundboard.Controls
 
         public void savePathBox()
         {
-            string file_name = "C:\\SoundboardSave.txt";
+            string file_name = "D:\\SoundboardSave.txt";
 
             try
             {
@@ -129,7 +129,7 @@ namespace Soundboard.Controls
                 {
                     //objWriter.WriteLine(PlayerTag + " " + tbPath.Text);
                     objWriter.WriteLine(tbPath.Text);
-                    objWriter.WriteLine(",");
+                    //objWriter.WriteLine(",");
                 }
             }
             catch(Exception ex)
@@ -137,6 +137,23 @@ namespace Soundboard.Controls
                 MessageBox.Show(ex.ToString());
             }
         }
+
+        public void loadPathBox(StreamReader sr, string lines)
+        {
+            try
+            {
+                if (lines != "")//(sr.ReadLine() != "")
+                {
+                    tbPath.Text = lines; //sr.ReadLine();
+                lblFilename.Text = System.IO.Path.GetFileName(tbPath.Text);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
 
         //public void loadPathBox(string plyrTg)
         //{

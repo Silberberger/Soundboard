@@ -31,7 +31,7 @@ namespace Soundboard
             {
                 foreach(Control ctrls in cntrl.Controls)
                 { 
-                if (ctrls is PlayerControl pc) 
+                if (ctrls is PlayerControlSmall pc) 
                     {
                         pc.clearPathBox();
                     }
@@ -52,7 +52,7 @@ namespace Soundboard
             {
                 foreach (Control ctrls in cntrl.Controls)
                 {
-                    if (ctrls is PlayerControl pc)
+                    if (ctrls is PlayerControlSmall pc)
                     {
                         pc.savePathBox();
                     }
@@ -72,6 +72,15 @@ namespace Soundboard
         {
 
             MessageBox.Show("Funktioniert noch nicht richtig, wird gefixed");
+
+            OpenFileDialog loadSave = new OpenFileDialog();
+            loadSave.Filter = "Text Files (*.txt)|*.txt";
+            loadSave.Title = "Load Save";
+            DialogResult dr = loadSave.ShowDialog();
+            if (dr == DialogResult.OK)
+            {
+                LoadTextboxes(loadSave.FileName);
+            }
             //foreach (Control cntrl in tabControl1.TabPages)
             //{
             //    foreach (Control ctrls in cntrl.Controls)
@@ -83,12 +92,47 @@ namespace Soundboard
             //        }
             //    }
 
-            //}
-            //{
-            //    loadPathBox();
-            //}
+                //}
+                //{
+                //    loadPathBox();
+                //}
         }
 
+        private void LoadTextboxes(string saveFile)
+        {
+
+
+            foreach (Control cntrl in tabControl1.TabPages)
+            {
+                foreach (Control ctrls in cntrl.Controls)
+                {
+                    if (ctrls is PlayerControlSmall pc)
+                    {
+;
+                        // as we don't know how many lines there are, need to allow for all possibilities
+
+                        //PlayerControlSmall[] tba = new PlayerControlSmall[63];
+                        //for (int pcs = 0; pcs <63; ++pcs)
+                           
+                                string filePath = saveFile;
+                                string[] lines = System.IO.File.ReadAllLines(filePath);
+
+                                using (StreamReader sr = new StreamReader(filePath))
+                                {
+                                    for (int i = 1; i < 63 && !sr.EndOfStream; ++i)
+                                foreach (PlayerControlSmall l in cntrl.Controls.OfType<PlayerControlSmall>().Where(l => l.Name.EndsWith("pcSmall"+i.ToString())))
+                                {
+
+                                    l.loadPathBox(sr, lines[i]);
+                                }
+
+                                }
+
+
+                    }
+                }
+            }
+        }
 
         private void tabControl_MouseDown(object sender, MouseEventArgs e)
         {
