@@ -47,18 +47,29 @@ namespace Soundboard
 
         private void btnSaveTabPage1_Click(object sender, EventArgs e)
         {
-
-            foreach (Control cntrl in tabControl1.TabPages)
+            SaveFileDialog savePlayers = new SaveFileDialog();
+            savePlayers.Filter = "Text Files (*.txt)|*.txt";
+            savePlayers.Title = "Tabs speichern - Du Maske";
+            DialogResult dr = savePlayers.ShowDialog();
+            if (dr == DialogResult.OK)
             {
-                foreach (Control ctrls in cntrl.Controls)
-                {
-                    if (ctrls is PlayerControlSmall pc)
-                    {
-                        pc.savePathBox();
-                    }
-                }
+                File.WriteAllText(savePlayers.FileName, String.Empty);
 
+                foreach (Control cntrl in tabControl1.TabPages)
+                {
+                    foreach (Control ctrls in cntrl.Controls)
+                    {
+                        if (ctrls is PlayerControlSmall pc)
+                        {
+                            pc.savePathBox(savePlayers.FileName);
+                        }
+                    }
+
+                }
             }
+
+
+
             //using (StreamWriter objWriter = new StreamWriter(file_name, true))
             //{
             //    objWriter.WriteLine(playerControl1.tbPath.Text);
@@ -71,7 +82,7 @@ namespace Soundboard
         private void btnLoadTabPage1_Click(object sender, EventArgs e)
         {
 
-            MessageBox.Show("Funktioniert noch nicht richtig, wird gefixed");
+            //MessageBox.Show("Funktioniert noch nicht richtig, wird gefixed");
 
             OpenFileDialog loadSave = new OpenFileDialog();
             loadSave.Filter = "Text Files (*.txt)|*.txt";
@@ -119,7 +130,7 @@ namespace Soundboard
 
                                 using (StreamReader sr = new StreamReader(filePath))
                                 {
-                                    for (int i = 1; i < 63 && !sr.EndOfStream; ++i)
+                                    for (int i = 0; i < 63 && !sr.EndOfStream; ++i)
                                 foreach (PlayerControlSmall l in cntrl.Controls.OfType<PlayerControlSmall>().Where(l => l.Name.EndsWith("pcSmall"+i.ToString())))
                                 {
 

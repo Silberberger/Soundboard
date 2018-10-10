@@ -132,6 +132,7 @@
             this.btnSaveTabPage1 = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -261,7 +262,7 @@
             this.pcSmall2.Location = new System.Drawing.Point(161, 6);
             this.pcSmall2.Name = "pcSmall2";
             this.pcSmall2.PlayerTag = "PLAYER";
-            this.pcSmall2.Size = new System.Drawing.Size(149, 77);
+            this.pcSmall2.Size = new System.Drawing.Size(149, 47);
             this.pcSmall2.TabIndex = 14;
             // 
             // pcSmall3
@@ -269,7 +270,7 @@
             this.pcSmall3.Location = new System.Drawing.Point(316, 6);
             this.pcSmall3.Name = "pcSmall3";
             this.pcSmall3.PlayerTag = "PLAYER";
-            this.pcSmall3.Size = new System.Drawing.Size(149, 85);
+            this.pcSmall3.Size = new System.Drawing.Size(149, 47);
             this.pcSmall3.TabIndex = 15;
             // 
             // pcSmall4
@@ -277,7 +278,7 @@
             this.pcSmall4.Location = new System.Drawing.Point(471, 6);
             this.pcSmall4.Name = "pcSmall4";
             this.pcSmall4.PlayerTag = "PLAYER";
-            this.pcSmall4.Size = new System.Drawing.Size(149, 100);
+            this.pcSmall4.Size = new System.Drawing.Size(149, 47);
             this.pcSmall4.TabIndex = 16;
             // 
             // pcSmall5
@@ -285,7 +286,7 @@
             this.pcSmall5.Location = new System.Drawing.Point(626, 6);
             this.pcSmall5.Name = "pcSmall5";
             this.pcSmall5.PlayerTag = "PLAYER";
-            this.pcSmall5.Size = new System.Drawing.Size(149, 85);
+            this.pcSmall5.Size = new System.Drawing.Size(149, 47);
             this.pcSmall5.TabIndex = 17;
             // 
             // pcSmall6
@@ -293,7 +294,7 @@
             this.pcSmall6.Location = new System.Drawing.Point(781, 6);
             this.pcSmall6.Name = "pcSmall6";
             this.pcSmall6.PlayerTag = "PLAYER";
-            this.pcSmall6.Size = new System.Drawing.Size(149, 85);
+            this.pcSmall6.Size = new System.Drawing.Size(149, 47);
             this.pcSmall6.TabIndex = 18;
             // 
             // pcSmall7
@@ -1206,5 +1207,6 @@
         private Controls.PlayerControlSmall pcSmall1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }

@@ -119,14 +119,13 @@ namespace Soundboard.Controls
             lblFilename.Text = "Keine Soundfile...";
         }
 
-        public void savePathBox()
+        public void savePathBox(string saveFilePath)
         {
-            string file_name = "D:\\SoundboardSave.txt";
-
             try
             {
-                using (StreamWriter objWriter = new StreamWriter(file_name, true))
+                using (StreamWriter objWriter = new StreamWriter(saveFilePath, true))
                 {
+                    
                     //objWriter.WriteLine(PlayerTag + " " + tbPath.Text);
                     objWriter.WriteLine(tbPath.Text);
                     //objWriter.WriteLine(",");
