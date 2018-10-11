@@ -130,8 +130,8 @@ namespace Soundboard
 
                                 using (StreamReader sr = new StreamReader(filePath))
                                 {
-                                    for (int i = 0; i < 63 && !sr.EndOfStream; ++i)
-                                foreach (PlayerControlSmall l in cntrl.Controls.OfType<PlayerControlSmall>().Where(l => l.Name.EndsWith("pcSmall"+i.ToString())))
+                            for (int i = 0, pnl = 1; i < 65 && pnl < 66 && !sr.EndOfStream; ++i, ++pnl)
+                                    foreach (PlayerControlSmall l in cntrl.Controls.OfType<PlayerControlSmall>().Where(l => l.Name.EndsWith("pcSmall"+pnl.ToString())))
                                 {
 
                                     l.loadPathBox(sr, lines[i]);
