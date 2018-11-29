@@ -28,12 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tbPath = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.btnOpenFile = new System.Windows.Forms.Button();
             this.lblFilename = new System.Windows.Forms.Label();
             this.btnStopAudio = new System.Windows.Forms.Button();
             this.btnPlayAudio = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsiChooseFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsiDeleteFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonUmbennenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbPath
@@ -87,6 +93,36 @@
             this.btnPlayAudio.UseVisualStyleBackColor = true;
             this.btnPlayAudio.Click += new System.EventHandler(this.btnPlayAudio_Click);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsiChooseFile,
+            this.tsiDeleteFile,
+            this.buttonUmbennenToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(235, 76);
+            // 
+            // tsiChooseFile
+            // 
+            this.tsiChooseFile.Name = "tsiChooseFile";
+            this.tsiChooseFile.Size = new System.Drawing.Size(234, 24);
+            this.tsiChooseFile.Text = "Audiodatei auswählen...";
+            this.tsiChooseFile.Click += new System.EventHandler(this.tsiChooseFile_Click);
+            // 
+            // tsiDeleteFile
+            // 
+            this.tsiDeleteFile.Name = "tsiDeleteFile";
+            this.tsiDeleteFile.Size = new System.Drawing.Size(234, 24);
+            this.tsiDeleteFile.Text = "Audiodatei löschen";
+            this.tsiDeleteFile.Click += new System.EventHandler(this.tsiDeleteFile_Click);
+            // 
+            // buttonUmbennenToolStripMenuItem
+            // 
+            this.buttonUmbennenToolStripMenuItem.Name = "buttonUmbennenToolStripMenuItem";
+            this.buttonUmbennenToolStripMenuItem.Size = new System.Drawing.Size(234, 24);
+            this.buttonUmbennenToolStripMenuItem.Text = "Button umbennen";
+            // 
             // PlayerControlSmall
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -98,6 +134,7 @@
             this.Controls.Add(this.btnPlayAudio);
             this.Name = "PlayerControlSmall";
             this.Size = new System.Drawing.Size(149, 47);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -111,6 +148,10 @@
         private System.Windows.Forms.Button btnOpenFile;
         private System.Windows.Forms.Label lblFilename;
         public System.Windows.Forms.TextBox tbPath;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem tsiChooseFile;
+        private System.Windows.Forms.ToolStripMenuItem tsiDeleteFile;
+        private System.Windows.Forms.ToolStripMenuItem buttonUmbennenToolStripMenuItem;
     }
 }
 

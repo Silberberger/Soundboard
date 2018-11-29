@@ -130,7 +130,7 @@ namespace Soundboard
 
                                 using (StreamReader sr = new StreamReader(filePath))
                                 {
-                            for (int i = 0, pnl = 1; i < 65 && pnl < 66 && !sr.EndOfStream; ++i, ++pnl)
+                            for (int i = 0, pnl = 1; i <253 && pnl <254 && !sr.EndOfStream; ++i, ++pnl)
                                     foreach (PlayerControlSmall l in cntrl.Controls.OfType<PlayerControlSmall>().Where(l => l.Name.EndsWith("pcSmall"+pnl.ToString())))
                                 {
 

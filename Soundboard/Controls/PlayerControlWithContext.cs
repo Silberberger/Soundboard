@@ -12,10 +12,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Soundboard.Controls
 {
-    public partial class PlayerControlSmall : UserControl
+    public partial class PlayerControlWithContext : UserControl
     {
+        public PlayerControlWithContext()
+        {
+            InitializeComponent();
+        }
 
         string file = "";
         private IWavePlayer waveOut;
@@ -35,12 +40,6 @@ namespace Soundboard.Controls
             }
         }
 
-        public PlayerControlSmall()
-        {
-            InitializeComponent();
-
-            
-        }
 
         private void btnOpenFile_Click(object sender, EventArgs e)
         {
@@ -49,39 +48,14 @@ namespace Soundboard.Controls
 
         }
 
-            private void btnPlayAudio_Click(object sender, EventArgs e)
-            {
-                if (tbPath.Text != null)
-                { 
-                    try
-                    {
-
-                    OnPlaybackStopped(this, e);
-
-                    this.waveOut = new WaveOut(); 
-                    this.mp3FileReader = new Mp3FileReader(tbPath.Text);
-                    this.waveOut.Init(mp3FileReader);
-                    this.waveOut.Play();
-                    this.waveOut.PlaybackStopped += OnPlaybackStopped;
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.Error.WriteLine(ex.Message);
-                    }
-                }
-                else
-                {
-
-                MessageBox.Show("Du musst zuerst eine Audiofile auswählen, du Maske!");
-
-                }
-
-
-            }
-
-        private void btnStopAudio_Click(object sender, EventArgs e)
+        private void btnPlayAudio_Click(object sender, EventArgs e)
         {
-            OnPlaybackStopped(this, e );
+
+    }
+
+    private void btnStopAudio_Click(object sender, EventArgs e)
+        {
+            OnPlaybackStopped(this, e);
 
         }
 
@@ -101,7 +75,7 @@ namespace Soundboard.Controls
         public void clearPathBox()
         {
             tbPath.Clear();
-            lblFilename.Text = "Keine Soundfile...";
+        btnPlayAudio.Text = "No file..";
         }
 
         public void savePathBox(string saveFilePath)
@@ -110,13 +84,13 @@ namespace Soundboard.Controls
             {
                 using (StreamWriter objWriter = new StreamWriter(saveFilePath, true))
                 {
-                    
+
                     //objWriter.WriteLine(PlayerTag + " " + tbPath.Text);
                     objWriter.WriteLine(tbPath.Text);
                     //objWriter.WriteLine(",");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
@@ -129,7 +103,7 @@ namespace Soundboard.Controls
                 if (lines != "")//(sr.ReadLine() != "")
                 {
                     tbPath.Text = lines; //sr.ReadLine();
-                lblFilename.Text = System.IO.Path.GetFileName(tbPath.Text);
+                    btnPlayAudio.Text = System.IO.Path.GetFileName(tbPath.Text);
                 }
             }
             catch (Exception ex)
@@ -152,8 +126,9 @@ namespace Soundboard.Controls
                     string text = File.ReadAllText(file);
                     size = text.Length;
                     tbPath.Text = file;
-                    lblFilename.Text = System.IO.Path.GetFileName(file);
-                }
+                    btnPlayAudio.Text = System.IO.Path.GetFileName(file); 
+
+            }
                 catch (IOException)
                 {
                 }
@@ -171,32 +146,49 @@ namespace Soundboard.Controls
             clearPathBox();
         }
 
+        private void tsiRenameButton_Click(object sender, EventArgs e)
+        {
 
-        //public void loadPathBox(string plyrTg)
-        //{
-        //    try
-        //    {
-        //        using (StreamReader reader = File.OpenText("C:\\"))
-        //        {
-        //            foreach (var line in File.ReadAllLines("C:\\"))
-        //            {
-        //                var lineCount = File.ReadLines(@"C:\\").Count();
+            var showDialog = this.ShowDialog("Button Name", "Rename the selected button");
+            btnPlayAudio.Text = showDialog;
+        }
 
-        //                if (lineCount.ToString() == plyrTg)
-        //                {
-        //                    tbPath.Text = reader.ReadLine();
-        //                }
-        //            }
+        private void tsiPickButtonColor_Click(object sender, EventArgs e)
+        {
+              ColorDialog colorDlg = new ColorDialog();
+                colorDlg.AllowFullOpen = true;
+                colorDlg.AnyColor = true;
 
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.ToString());
-        //    }
-        //}
+                if (colorDlg.ShowDialog() == DialogResult.OK)
+                {
+                    btnPlayAudio.BackColor = colorDlg.Color;
+                }
+
+
+            }
+
+
+        public string ShowDialog(string text, string caption)
+        {
+            Form prompt = new Form();
+            prompt.Width = 500;
+            prompt.Height = 150;
+            prompt.Text = caption;
+            Label textLabel = new Label() { Left = 50, Top = 20, Text = text };
+            TextBox textBox = new TextBox() { Left = 50, Top = 50, Width = 400 };
+            Button confirmation = new Button() { Text = "Ok", Left = 350, Width = 100, Top = 70 };
+            confirmation.Click += (sender, e) => { prompt.Close(); };
+            prompt.Controls.Add(confirmation);
+            prompt.Controls.Add(textLabel);
+            prompt.Controls.Add(textBox);
+            prompt.ShowDialog();
+            return textBox.Text;
+        }
+
+
 
     }
 }
+
 
 
